@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://okr1xfyuk8fe"]
+
+[ext_resource type="AudioStream" uid="uid://db6hngekankmv" path="res://assets/audio/music/desert_sirocco.ogg" id="2_7sjfj"]
+[ext_resource type="AudioStream" uid="uid://d1njpbht6whgv" path="res://assets/audio/button_click.ogg" id="2_555mq"]
+[ext_resource type="Script" path="res://audio_manager.gd" id="2_v8fv4"]
+[ext_resource type="AudioStream" uid="uid://86lp2ujxkhid" path="res://assets/audio/button_hover.ogg" id="3_wvij8"]
+[ext_resource type="AudioStream" uid="uid://6gr1i2g56872" path="res://assets/audio/slider_change.ogg" id="4_whrv1"]
+[ext_resource type="AudioStream" uid="uid://dkl75248oiba4" path="res://assets/audio/correct_answer.mp3" id="6_xsp1s"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("2_v8fv4")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_7sjfj")
+volume_db = -8.0
+autoplay = true
+bus = &"Music"
+
+[node name="ButtonHover" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_wvij8")
+volume_db = -4.0
+bus = &"UI"
+
+[node name="ButtonPressed" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_555mq")
+volume_db = 10.0
+bus = &"UI"
+
+[node name="TabHover" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_wvij8")
+volume_db = -4.0
+bus = &"UI"
+
+[node name="TabPressed" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_555mq")
+volume_db = 10.0
+bus = &"UI"
+
+[node name="SliderChange" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_whrv1")
+bus = &"UI"
+
+[node name="CorrectAnswer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_xsp1s")
+bus = &"UI"

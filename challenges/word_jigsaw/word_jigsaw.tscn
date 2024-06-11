@@ -1,0 +1,86 @@
+[gd_scene load_steps=4 format=3 uid="uid://p34cuecp3c8f"]
+
+[ext_resource type="Theme" uid="uid://inr4tcdwqeln" path="res://game_theme.tres" id="1_hqnec"]
+[ext_resource type="Script" path="res://challenges/word_jigsaw/word_jigsaw.gd" id="2_johuw"]
+[ext_resource type="PackedScene" uid="uid://bf14kfetgi42a" path="res://challenges/difficulty_picker.tscn" id="3_tcekj"]
+
+[node name="LetterJigsaw" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hqnec")
+script = ExtResource("2_johuw")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DifficultyPicker" parent="MarginContainer" instance=ExtResource("3_tcekj")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Challenge" type="VBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/Challenge"]
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 72
+text = "Ułóż zdanie z podanych wyrazów"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Challenge"]
+layout_mode = 2
+theme_override_constants/separation = 384
+alignment = 1
+
+[node name="PendingTilesScroll" type="ScrollContainer" parent="MarginContainer/Challenge/VBoxContainer"]
+custom_minimum_size = Vector2(0, 104)
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="PendingTiles" type="HBoxContainer" parent="MarginContainer/Challenge/VBoxContainer/PendingTilesScroll"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="PlacedTilesScroll" type="ScrollContainer" parent="MarginContainer/Challenge/VBoxContainer"]
+custom_minimum_size = Vector2(0, 104)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="PlacedTiles" type="HBoxContainer" parent="MarginContainer/Challenge/VBoxContainer/PlacedTilesScroll"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="AnimationLayer" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="difficulty_picked" from="MarginContainer/DifficultyPicker" to="." method="_on_difficulty_picked"]

@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=3 uid="uid://bhp4he847gj8w"]
+
+[ext_resource type="Theme" uid="uid://inr4tcdwqeln" path="res://game_theme.tres" id="1_1xcoa"]
+[ext_resource type="Script" path="res://menus/new_game_menu.gd" id="1_gewjl"]
+[ext_resource type="Texture2D" uid="uid://hg1qpvwvl75u" path="res://assets/images/companions/bear_normal.png" id="3_qy033"]
+[ext_resource type="Texture2D" uid="uid://bju200yulsbkd" path="res://assets/images/companions/bear_pressed.png" id="4_07g8i"]
+[ext_resource type="Texture2D" uid="uid://d1kpbuwenlasj" path="res://assets/images/companions/bear_hover.png" id="4_fcfb4"]
+[ext_resource type="Texture2D" uid="uid://cs7uapxhsyk7u" path="res://assets/images/companions/lion_hover.png" id="6_6fjld"]
+[ext_resource type="Texture2D" uid="uid://c4eplbahb2ugi" path="res://assets/images/companions/lion_normal.png" id="6_bnbwi"]
+[ext_resource type="Texture2D" uid="uid://ddpp87ieoywoh" path="res://assets/images/companions/panda_hover.png" id="8_4h2tn"]
+[ext_resource type="Texture2D" uid="uid://bnyf8xgv186ne" path="res://assets/images/companions/lion_pressed.png" id="8_dd34p"]
+[ext_resource type="Texture2D" uid="uid://blyvonlllycln" path="res://assets/images/companions/panda_normal.png" id="9_k6h6s"]
+[ext_resource type="Texture2D" uid="uid://67ixxqbd00nt" path="res://assets/images/companions/panda_pressed.png" id="11_4lrci"]
+
+[node name="NewGameMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1xcoa")
+script = ExtResource("1_gewjl")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(1248, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 72
+text = "Wybierz swojego przewodnika"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Bear" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource("3_qy033")
+texture_pressed = ExtResource("4_07g8i")
+texture_hover = ExtResource("4_fcfb4")
+
+[node name="Lion" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource("6_bnbwi")
+texture_pressed = ExtResource("8_dd34p")
+texture_hover = ExtResource("6_6fjld")
+
+[node name="Panda" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+toggle_mode = true
+texture_normal = ExtResource("9_k6h6s")
+texture_pressed = ExtResource("11_4lrci")
+texture_hover = ExtResource("8_4h2tn")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+text = "Powrót"
+
+[node name="SelectButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+disabled = true
+text = "Wybierz"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/SelectButton" to="." method="_on_select_button_pressed"]

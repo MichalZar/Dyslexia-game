@@ -1,0 +1,9 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://b1alj6a4a6f8w"]
+
+[ext_resource type="FontFile" path="res://assets/fonts/fredoka_one_medium.ttf" id="1_5ryhv"]
+
+[resource]
+base_font = ExtResource("1_5ryhv")
+variation_opentype = {
+2003265652: 500
+}

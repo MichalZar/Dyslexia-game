@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1p6hwtllo4pe"]
+
+[ext_resource type="Theme" uid="uid://inr4tcdwqeln" path="res://game_theme.tres" id="1_6742v"]
+[ext_resource type="Script" path="res://menus/challenge_pick_menu.gd" id="1_c6quy"]
+
+[node name="ChallengePickMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6742v")
+script = ExtResource("1_c6quy")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/ScrollContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 128
+theme_override_constants/v_separation = 64
+columns = 2
+
+[node name="SyllablesAndSounds" type="Button" parent="MarginContainer/ScrollContainer/CenterContainer/GridContainer"]
+custom_minimum_size = Vector2(672, 112)
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Sylaby i głoski"
+
+[node name="Memo" type="Button" parent="MarginContainer/ScrollContainer/CenterContainer/GridContainer"]
+custom_minimum_size = Vector2(672, 112)
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Puzzle memo"
+
+[node name="LetterJigsaw" type="Button" parent="MarginContainer/ScrollContainer/CenterContainer/GridContainer"]
+custom_minimum_size = Vector2(672, 112)
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Układanka literowa"
+
+[node name="WordJigsaw" type="Button" parent="MarginContainer/ScrollContainer/CenterContainer/GridContainer"]
+custom_minimum_size = Vector2(672, 112)
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Układanka wyrazowa"
+
+[node name="Orthography" type="Button" parent="MarginContainer/ScrollContainer/CenterContainer/GridContainer"]
+custom_minimum_size = Vector2(672, 112)
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Ortografia"
+
+[connection signal="pressed" from="MarginContainer/ScrollContainer/CenterContainer/GridContainer/SyllablesAndSounds" to="." method="_on_syllables_and_sounds_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/CenterContainer/GridContainer/Memo" to="." method="_on_memo_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/CenterContainer/GridContainer/LetterJigsaw" to="." method="_on_letter_jigsaw_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/CenterContainer/GridContainer/WordJigsaw" to="." method="_on_word_jigsaw_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/CenterContainer/GridContainer/Orthography" to="." method="_on_orthography_pressed"]

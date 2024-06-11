@@ -1,0 +1,10 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://bmtno08nqs6pn"]
+
+[ext_resource type="Texture2D" uid="uid://uc7elshpyonj" path="res://challenges/syllables_and_sounds/tile_word.png" id="1_kca73"]
+
+[resource]
+content_margin_left = 64.0
+content_margin_top = 32.0
+content_margin_right = 64.0
+content_margin_bottom = 32.0
+texture = ExtResource("1_kca73")

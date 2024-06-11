@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://wd1nmgiylenh"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_k5vjf"]
+[ext_resource type="PackedScene" uid="uid://bsjiaanhsqwjp" path="res://scenes/main_scene.tscn" id="2_vyi8a"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_k5vjf")
+
+[node name="MainScene" parent="." instance=ExtResource("2_vyi8a")]
+unique_name_in_owner = true
+visible = false
+
+[node name="CorruptedSettingsDialog" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+title = "Niepoprawny plik ustawień"
+initial_position = 2
+size = Vector2i(1116, 184)
+ok_button_text = "Kontynuuj"
+dialog_text = "Plik z ustawieniami gry jest niepoprawny.
+
+Jeżeli chcesz aby gra wczytała ustawienia domyślne i zapisała je również do pliku, to wciśnij przycisk „Kontynuuj”.
+
+W przeciwnym wypadku możesz wyłączyć grę wybierając „Wyjdź”. Plik z ustawieniami nie zostanie wtedy nadpisany ustawieniami domyślnymi."
+dialog_close_on_escape = false
+cancel_button_text = "Wyjdź"
+
+[connection signal="canceled" from="CorruptedSettingsDialog" to="." method="_on_corrupted_settings_dialog_canceled"]
+[connection signal="confirmed" from="CorruptedSettingsDialog" to="." method="_on_corrupted_settings_dialog_confirmed"]

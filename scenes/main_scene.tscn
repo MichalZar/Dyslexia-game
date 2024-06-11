@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://bsjiaanhsqwjp"]
+
+[ext_resource type="Script" path="res://scenes/main_scene.gd" id="1_rhr1n"]
+[ext_resource type="Texture2D" uid="uid://cig86d075m5k2" path="res://assets/images/backgrounds/background2.png" id="2_t7rmt"]
+[ext_resource type="PackedScene" uid="uid://bo53roofyw42m" path="res://menus/main_menu.tscn" id="3_d288p"]
+[ext_resource type="PackedScene" uid="uid://bhp4he847gj8w" path="res://menus/new_game_menu.tscn" id="4_ga0un"]
+[ext_resource type="PackedScene" uid="uid://crgecianj0xas" path="res://menus/load_game_menu.tscn" id="4_jgpld"]
+[ext_resource type="PackedScene" uid="uid://cs7mn5t8ivwom" path="res://menus/settings_menu.tscn" id="5_vd6ee"]
+
+[node name="MainScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rhr1n")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_t7rmt")
+
+[node name="MainMenu" parent="." instance=ExtResource("3_d288p")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="NewGameMenu" parent="." instance=ExtResource("4_ga0un")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="LoadGameMenu" parent="." instance=ExtResource("4_jgpld")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="SettingsMenu" parent="." instance=ExtResource("5_vd6ee")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[connection signal="scene_changed" from="MainMenu" to="." method="_change_scene"]
+[connection signal="companion_picked" from="NewGameMenu" to="." method="_start_new_game"]
+[connection signal="exited" from="NewGameMenu" to="." method="_return_to_main_menu"]
+[connection signal="exited" from="LoadGameMenu" to="." method="_return_to_main_menu"]
+[connection signal="exited" from="SettingsMenu" to="." method="_return_to_main_menu"]

@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvu5bggunrv4n"]
+
+[ext_resource type="Theme" uid="uid://inr4tcdwqeln" path="res://game_theme.tres" id="1_8fp1w"]
+[ext_resource type="Script" path="res://ui/saved_games_list.gd" id="2_lnll5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cmcvf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_smn20"]
+
+[node name="SavedGames" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8fp1w")
+script = ExtResource("2_lnll5")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 32
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 0
+
+[node name="ItemList" type="ItemList" parent="Panel/MarginContainer/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_cmcvf")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_smn20")
+auto_height = true
+same_column_width = true
+
+[connection signal="item_activated" from="Panel/MarginContainer/ScrollContainer/MarginContainer/ItemList" to="." method="_on_item_list_item_activated"]
+[connection signal="item_selected" from="Panel/MarginContainer/ScrollContainer/MarginContainer/ItemList" to="." method="_on_item_list_item_selected"]

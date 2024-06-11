@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://7uao37yyfwdg"]
+
+[ext_resource type="Script" path="res://challenges/memo/memo_card.gd" id="1_cll2y"]
+
+[node name="Card" type="Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_cll2y")
+
+[node name="Button" type="TextureButton" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 0
+pivot_offset = Vector2(100, 100)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

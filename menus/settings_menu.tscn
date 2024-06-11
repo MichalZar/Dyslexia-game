@@ -1,0 +1,108 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs7mn5t8ivwom"]
+
+[ext_resource type="Theme" uid="uid://inr4tcdwqeln" path="res://game_theme.tres" id="1_ss67d"]
+[ext_resource type="Script" path="res://menus/settings_menu.gd" id="2_ux3rp"]
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ss67d")
+script = ExtResource("2_ux3rp")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(1248, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 32
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+tab_alignment = 1
+
+[node name="Sound" type="TabBar" parent="MarginContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Sound"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Sound/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 96
+
+[node name="Music" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VolumeLevelLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Sound/MarginContainer/VBoxContainer/Music"]
+layout_mode = 2
+text = "Głośność muzyki"
+horizontal_alignment = 1
+
+[node name="MusicVolumeLevel" type="HSlider" parent="MarginContainer/VBoxContainer/TabContainer/Sound/MarginContainer/VBoxContainer/Music"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="UI" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Sound/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VolumeLevelLabel" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Sound/MarginContainer/VBoxContainer/UI"]
+layout_mode = 2
+text = "Głośność interfejsu"
+horizontal_alignment = 1
+
+[node name="UIVolumeLevel" type="HSlider" parent="MarginContainer/VBoxContainer/TabContainer/Sound/MarginContainer/VBoxContainer/UI"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="Display" type="TabBar" parent="MarginContainer/VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Display"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer"]
+layout_mode = 2
+
+[node name="FullScreenButton" type="CheckButton" parent="MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Pełny ekran"
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Powrót"
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/TabContainer/Sound/MarginContainer/VBoxContainer/Music/MusicVolumeLevel" to="." method="_on_music_volume_level_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/TabContainer/Sound/MarginContainer/VBoxContainer/UI/UIVolumeLevel" to="." method="_on_ui_volume_level_changed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/TabContainer/Display/MarginContainer/VBoxContainer/FullScreenButton" to="." method="_on_full_screen_button_toggled"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

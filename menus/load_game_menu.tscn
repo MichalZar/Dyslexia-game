@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://crgecianj0xas"]
+
+[ext_resource type="Script" path="res://menus/load_game_menu.gd" id="1_qab7f"]
+[ext_resource type="PackedScene" uid="uid://dvu5bggunrv4n" path="res://ui/saved_games_list.tscn" id="2_p5dsp"]
+[ext_resource type="Theme" uid="uid://inr4tcdwqeln" path="res://game_theme.tres" id="3_emgjy"]
+
+[node name="LoadGameMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_emgjy")
+script = ExtResource("1_qab7f")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(1248, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 32
+
+[node name="SavedGames" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_p5dsp")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+text = "Powrót"
+
+[node name="LoadButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Wczytaj"
+
+[connection signal="save_chosen" from="MarginContainer/VBoxContainer/SavedGames" to="." method="_on_saved_games_save_chosen"]
+[connection signal="save_selected" from="MarginContainer/VBoxContainer/SavedGames" to="." method="_on_saved_games_save_selected"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]

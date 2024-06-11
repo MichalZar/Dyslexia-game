@@ -1,0 +1,76 @@
+[gd_scene load_steps=12 format=3 uid="uid://bf14kfetgi42a"]
+
+[ext_resource type="Theme" uid="uid://inr4tcdwqeln" path="res://game_theme.tres" id="1_wtsi4"]
+[ext_resource type="Script" path="res://challenges/difficulty_picker.gd" id="2_xlx02"]
+[ext_resource type="StyleBox" uid="uid://hn2v6pqad56w" path="res://assets/textures/button_green_normal.tres" id="3_md362"]
+[ext_resource type="StyleBox" uid="uid://4ac5rk88psmx" path="res://assets/textures/button_green_hover.tres" id="4_7dov1"]
+[ext_resource type="StyleBox" uid="uid://csj4aghlm8mkv" path="res://assets/textures/button_green_pressed.tres" id="5_y1pna"]
+[ext_resource type="StyleBox" uid="uid://cmkkjywyth8xl" path="res://assets/textures/button_orange_normal.tres" id="6_1f5kr"]
+[ext_resource type="StyleBox" uid="uid://7sl0pan810fq" path="res://assets/textures/button_orange_hover.tres" id="7_fh0ss"]
+[ext_resource type="StyleBox" uid="uid://r3q7v1sqsncl" path="res://assets/textures/button_orange_pressed.tres" id="8_1emod"]
+[ext_resource type="StyleBox" uid="uid://bqjarn0k4fvdj" path="res://assets/textures/button_red_normal.tres" id="9_kf75l"]
+[ext_resource type="StyleBox" uid="uid://b8sd2ak62bjjf" path="res://assets/textures/button_red_hover.tres" id="10_t50sy"]
+[ext_resource type="StyleBox" uid="uid://dpcynf862ebhl" path="res://assets/textures/button_red_pressed.tres" id="11_kffbg"]
+
+[node name="DifficultyPicker" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_wtsi4")
+script = ExtResource("2_xlx02")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 96
+alignment = 1
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 96
+text = "Wybierz poziom trudności"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="Easy" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = ExtResource("3_md362")
+theme_override_styles/hover = ExtResource("4_7dov1")
+theme_override_styles/pressed = ExtResource("5_y1pna")
+text = "Łatwy"
+
+[node name="Normal" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = ExtResource("6_1f5kr")
+theme_override_styles/hover = ExtResource("7_fh0ss")
+theme_override_styles/pressed = ExtResource("8_1emod")
+text = "Średni"
+
+[node name="Hard" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = ExtResource("9_kf75l")
+theme_override_styles/hover = ExtResource("10_t50sy")
+theme_override_styles/pressed = ExtResource("11_kffbg")
+text = "Trudny"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Easy" to="." method="_on_easy_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Normal" to="." method="_on_normal_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Hard" to="." method="_on_hard_pressed"]
